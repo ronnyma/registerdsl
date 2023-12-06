@@ -20,10 +20,19 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class RegisterQueryTest {
 
-@Test
-void shoould_produceQuery_when_given_parameters() {
+  private static void printQuery(ObjectMapper objectMapper, List<RegisterQuery> s1) {
+    try {
+      String s = objectMapper.writeValueAsString(s1);
+      log.info("JSON: {}", s);
+    } catch (JsonProcessingException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Test
+  void shoould_produceQuery_when_given_parameters() {
     Dsl dsl = new Dsl();
-    List<RegisterQuery> greker = dsl
+    List<RegisterQuery> query = dsl
         .har().noekkel(IDENTIFIKASJONSNUMMER).lik().verdi("01010112345").gjeldende()
         .har().noekkel(PERSONSTATUS).ulik().verdi("BOSATT").gjeldende()
         .harIkke().noekkel(FAMILIERELASJONSROLLE).lik().verdi("EKTEFELLE")
@@ -37,18 +46,13 @@ void shoould_produceQuery_when_given_parameters() {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new Jdk8Module());
 
-    try {
-      String s = objectMapper.writeValueAsString(greker);
-      log.info("JSON: {}", s);
-    } catch (JsonProcessingException e) {
-      throw new RuntimeException(e);
-    }
+    printQuery(objectMapper, query);
   }
 
   @Test
   void shoould_produceQuery_when_given_parameters2() {
     Dsl dsl = new Dsl();
-    List<RegisterQuery> greker = dsl
+    List<RegisterQuery> query = dsl
         .har().noekkel(IDENTIFIKASJONSNUMMER)
         .lik().verdi("01010112345").gjeldende()
         .generer()
@@ -57,11 +61,6 @@ void shoould_produceQuery_when_given_parameters() {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new Jdk8Module());
 
-    try {
-      String s = objectMapper.writeValueAsString(greker);
-      log.info("Json: {}", s);
-    } catch (JsonProcessingException e) {
-      throw new RuntimeException(e);
-    }
+    printQuery(objectMapper, query);
   }
 }
