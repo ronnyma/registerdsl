@@ -1,7 +1,6 @@
 package ai.transfinite.dsl;
 
 
-
 import static ai.transfinite.dsl.Clause.ERGJELDENDE;
 import static ai.transfinite.dsl.Clause.HAR;
 import static ai.transfinite.dsl.Clause.HARIKKE;
@@ -104,7 +103,9 @@ public class QueryDsl {
     public Dsl har() {
       this.query.add(HAR);
       return this;
-    }    public Dsl noekkel(Terms key) {
+    }
+
+    public Dsl noekkel(Terms key) {
       this.query.add(key);
       this.query.add(HAR);
       return this;
@@ -149,6 +150,12 @@ public class QueryDsl {
     public Dsl gjeldende() {
       this.query.add(ERGJELDENDE);
       this.query.add(new Value(true));
+      return this;
+    }
+
+    public Dsl historisk() {
+      this.query.add(ERGJELDENDE);
+      this.query.add(new Value(false));
       return this;
     }
 
