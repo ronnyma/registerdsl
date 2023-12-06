@@ -20,7 +20,9 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class RegisterQueryTest {
 
-  private static void printQuery(ObjectMapper objectMapper, List<RegisterQuery> s1) {
+  private static void printQuery(List<RegisterQuery> s1) {
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.registerModule(new Jdk8Module());
     try {
       String s = objectMapper.writeValueAsString(s1);
       log.info("JSON: {}", s);
@@ -43,10 +45,7 @@ class RegisterQueryTest {
         .generer()
         .getRegisterQuery();
 
-    ObjectMapper objectMapper = new ObjectMapper();
-    objectMapper.registerModule(new Jdk8Module());
-
-    printQuery(objectMapper, query);
+    printQuery(query);
   }
 
   @Test
@@ -61,6 +60,6 @@ class RegisterQueryTest {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new Jdk8Module());
 
-    printQuery(objectMapper, query);
+    printQuery(query);
   }
 }
