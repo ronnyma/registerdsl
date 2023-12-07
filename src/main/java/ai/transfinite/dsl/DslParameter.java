@@ -1,6 +1,6 @@
 package ai.transfinite.dsl;
 
-public interface DslPart {
+public interface DslParameter {
 
   String value();
 }

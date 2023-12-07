@@ -3,7 +3,7 @@ package ai.transfinite.dsl;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public enum Operator implements DslPart {
+public enum Operator implements DslParameter {
   FRA("FRA"),
   TIL("TIL"),
   LIK("LIK"),

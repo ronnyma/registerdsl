@@ -3,9 +3,10 @@ package ai.transfinite.dsl;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public enum Clause implements DslPart {
+public enum Clause implements DslParameter {
 
   ERGJELDENDE("ERGJELDENDE"),
+  HISTORISK("ERGJELDENDE"),
   HAR("HAR"),
   HARIKKE("HARIKKE");
 

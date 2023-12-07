@@ -3,7 +3,7 @@ package ai.transfinite.dsl;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class Value implements DslPart {
+public class Value implements DslParameter {
 
   public Value(Boolean value) {
     this.value = String.valueOf(value);

@@ -3,11 +3,12 @@ package ai.transfinite.dsl;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public enum Terms implements DslPart{
+public enum Terms implements DslParameter {
   IDENTIFIKASJONSNUMMER("identifikator.foedselsellerdnummer"),
   PERSONSTATUS("status.status"),
+  UKJENTBOSTED("bostedsadresse.ukjentbosted.kommune"),
   FOEDSELSAAR("foedsel.foedselsaar"),
-  OPPHOLDPAASVALBARD_PERIODE("svalbard.aar"), //TODO: denne finnes ikke, men brukes under utvikling
+  OPPHOLDPAASVALBARD_PERIODE("svalbard.aar"),
   IDENTIFIKATORTYPE("identifikator.identifikatortype"),
   GREKER("greker.greker"),
   FAMILIERELASJONSROLLE("familierelasjon.minrolleforperson");

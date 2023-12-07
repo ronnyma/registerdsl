@@ -28,8 +28,8 @@ public class QueryDsl {
 
   private QueryDsl(Dsl builder) {
     List<Builder> registerQueryBuilder = new ArrayList<>();
-    Optional<Builder> builder1 = Optional.of(new Builder()); //TODO: dette er en code-smell og må fikses
-    for (DslPart s : builder.getQuery()) {
+    Optional<Builder> builder1 = Optional.of(new Builder()); //TODO: codesmell
+    for (DslParameter s : builder.getQuery()) {
       Optional<Builder> returnBuilder = populate(s, builder1.get());
       if (returnBuilder.isPresent()) {
         registerQueryBuilder.add(returnBuilder.get());
@@ -41,8 +41,8 @@ public class QueryDsl {
     }
   }
 
-  private Optional<Builder> populate(DslPart dslPart, Builder queryBuilder) {
-    switch (dslPart) {
+  private Optional<Builder> populate(DslParameter dslParameter, Builder queryBuilder) {
+    switch (dslParameter) {
       case Terms t -> {
         Builder builder = new Builder();
         builder.withSoekeparameter(t.value());
@@ -81,11 +81,11 @@ public class QueryDsl {
 
   public static class Dsl {
 
-    private final List<DslPart> query = new ArrayList<>();
+    private final List<DslParameter> query = new ArrayList<>();
 
-    private static boolean sanityCheck(List<DslPart> dslParts) {
+    private static boolean sanityCheck(List<DslParameter> dslParameters) {
       StringBuffer stringBuffer = new StringBuffer();
-      dslParts.forEach(p -> {
+      dslParameters.forEach(p -> {
         String firstLetter = p.getClass().getSimpleName().substring(0, 1);
 
         stringBuffer.append(firstLetter);
@@ -95,7 +95,7 @@ public class QueryDsl {
       return true;
     }
 
-    public List<DslPart> getQuery() {
+    public List<DslParameter> getQuery() {
       sanityCheck(query);
       return query;
     }
@@ -137,7 +137,6 @@ public class QueryDsl {
     }
 
     public Dsl fra() { //TODO: fra/til blir ikke håndtert
-      this.query.add(INTERVALL);
       this.query.add(FRA);
       return this;
     }

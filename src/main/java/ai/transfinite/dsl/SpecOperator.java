@@ -3,7 +3,7 @@ package ai.transfinite.dsl;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public enum SpecOperator implements DslPart {
+public enum SpecOperator implements DslParameter {
 
   INTERVALL("INTERVALL");
 

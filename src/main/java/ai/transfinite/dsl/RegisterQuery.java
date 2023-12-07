@@ -15,31 +15,31 @@ public class RegisterQuery {
 
   private static final String REGISTER_PATH = "document.personData.personIRegisteret.";
 
-  public final String soekeparameter;
-  public final String verdi;
+  public final String searchParameter;
+  public final String value;
   public final String tilVerdi;
-  public final Operator operator;
-  public final String erGjeldende;
+  public final DslParameter operator;
+  public final Boolean isValid;
 
   public RegisterQuery(Builder builder) {
-    this.soekeparameter = REGISTER_PATH + builder.soekeparameter;
-    this.verdi = builder.verdi;
+    this.searchParameter = REGISTER_PATH + builder.soekeparameter;
+    this.value = builder.verdi;
     this.operator = builder.operator;
     this.tilVerdi = builder.tilVerdi;
-    this.erGjeldende = builder.erGjeldende;
+    this.isValid = Boolean.valueOf(builder.erGjeldende);
   }
 
   public Optional<String> getTilVerdi() {
     return Optional.ofNullable(tilVerdi);
   }
 
-  public String getErGjeldende() {
-    return Optional.ofNullable(erGjeldende).orElse("true");
+  public Boolean getIsValid() {
+    return Optional.ofNullable(isValid).orElse(true);
   }
 
 
   public String erGjeldendePath() {
-    String[] split = soekeparameter.split("\\.");
+    String[] split = searchParameter.split("\\.");
     return REGISTER_PATH + split[0] + ".erGjeldende";
   }
 
@@ -89,10 +89,6 @@ public class RegisterQuery {
       return this;
     }
 
-    public Builder withErGjeldende(String erGjeldende) {
-      this.erGjeldende = erGjeldende;
-      return this;
-    }
 
     public RegisterQuery build() {
       return new RegisterQuery(this);
