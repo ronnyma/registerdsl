@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 class RegisterQueryTest {
 
 
-  public static void queryToJson(SearchRequest request) {
+  public static void printRequest(SearchRequest request) {
     final StringWriter writer = new StringWriter();
     try (final JacksonJsonpGenerator generator = new JacksonJsonpGenerator(new JsonFactory().createGenerator(writer))) {
       request.serialize(generator, new JacksonJsonpMapper());
@@ -38,7 +38,8 @@ class RegisterQueryTest {
     }
     log.info("Query: {}", writer);
   }
-  private static void printQuery(List<RegisterQuery> s1) {
+
+  private static void printregisterQuery(List<RegisterQuery> s1) {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new Jdk8Module());
     try {
@@ -52,7 +53,7 @@ class RegisterQueryTest {
   @Test
   void shoould_produceQuery_when_given_parameters() {
     Dsl dsl = new Dsl();
-    List<RegisterQuery> query = dsl
+    List<RegisterQuery> registerQuery = dsl
         .har().noekkel(IDENTIFIKASJONSNUMMER).lik().verdi("01010112345").gjeldende()
         .har().noekkel(PERSONSTATUS).ulik().verdi("BOSATT").gjeldende()
         .harIkke().noekkel(FAMILIERELASJONSROLLE).lik().verdi("EKTEFELLE")
@@ -64,10 +65,10 @@ class RegisterQueryTest {
         .generer()
         .getRegisterQuery();
 
-    SearchRequest build = QueryGenerator.generate(query).build();
+    SearchRequest searchRequest = QueryGenerator.generate(registerQuery).build();
 
-
-    queryToJson(build);
+    printregisterQuery(registerQuery);
+    printRequest(searchRequest);
   }
 
   @Test
@@ -82,6 +83,6 @@ class RegisterQueryTest {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new Jdk8Module());
 
-    printQuery(query);
+    printregisterQuery(query);
   }
 }

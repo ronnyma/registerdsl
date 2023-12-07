@@ -52,8 +52,6 @@ public class RegisterQuery {
     private Clause clause = Clause.HAR;
     private String erGjeldende;
 
-    public Builder() {
-    }
 
     public Builder withSoekeparameter(String soekeparameter) {
       this.soekeparameter = soekeparameter;
