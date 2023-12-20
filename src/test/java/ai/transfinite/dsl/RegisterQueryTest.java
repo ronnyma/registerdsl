@@ -80,8 +80,6 @@ class RegisterQueryTest {
         .generer()
         .getRegisterQuery();
 
-    ObjectMapper objectMapper = new ObjectMapper();
-    objectMapper.registerModule(new Jdk8Module());
 
     printregisterQuery(query);
   }

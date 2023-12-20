@@ -45,7 +45,7 @@ public class QueryDsl {
     switch (dslParameter) {
       case Terms t -> {
         Builder builder = new Builder();
-        builder.withSoekeparameter(t.value());
+        builder.withSearchParameter(t.value());
         return Optional.of(builder);
       }
       case Clause c -> {
@@ -62,13 +62,13 @@ public class QueryDsl {
       }
       case Value v -> {
         if (Set.of("true", "false").contains(v.value())) {
-          queryBuilder.withGjeldende(v.value());
+          queryBuilder.withIsValid(v.value());
         } else {
           if (!fraErSatt) {
-            queryBuilder.withVerdi(v.value());
+            queryBuilder.withValue(v.value());
           } else {
             fraErSatt = false;
-            queryBuilder.withTilVerdi(v.value());
+            queryBuilder.withToValue(v.value());
           }
         }
         return empty();

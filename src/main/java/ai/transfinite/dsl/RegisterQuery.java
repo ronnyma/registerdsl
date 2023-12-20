@@ -53,17 +53,17 @@ public class RegisterQuery {
     private String erGjeldende;
 
 
-    public Builder withSoekeparameter(String soekeparameter) {
+    public Builder withSearchParameter(String soekeparameter) {
       this.soekeparameter = soekeparameter;
       return this;
     }
 
-    public Builder withVerdi(String verdi) {
+    public Builder withValue(String verdi) {
       this.verdi = verdi;
       return this;
     }
 
-    public Builder withGjeldende(String verdi) {
+    public Builder withIsValid(String verdi) {
       this.erGjeldende = verdi;
       return this;
     }
@@ -72,7 +72,7 @@ public class RegisterQuery {
       return this;
     }
 
-    public Builder withTilVerdi(String tilVerdi) {
+    public Builder withToValue(String tilVerdi) {
       this.tilVerdi = tilVerdi;
       return this;
     }
